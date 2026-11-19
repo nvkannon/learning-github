@@ -1,0 +1,23 @@
+function is_descriptive_commit(message) {
+  // Trim leading and trailing whitespace
+  const trimmed = message.trim();
+
+  // Rule 1: at least 10 characters
+  if (trimmed.length < 10) {
+    return false;
+  }
+
+  // Rule 2: at least 2 words (separated by one or more spaces)
+  const words = trimmed.split(/\s+/);
+  if (words.length < 2) {
+    return false;
+  }
+
+  // Rule 3: not just a generic placeholder (case-insensitive)
+  const generic = ["wip", "fix", "update"];
+  if (generic.includes(trimmed.toLowerCase())) {
+    return false;
+  }
+
+  return true;
+}
